@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="robots" content="noindex">
-    <title>BEAUTY PRODUCTS</title>
+    <title>Peachy's Collection</title>
     @yield('styles')
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -143,16 +143,19 @@
         /* Adjust the font size as needed */
         cursor: pointer;
     }
+    .bg-primary {
+        background-color: #000000 !important;
+    }
 </style>
 
 <body class="content">
     <header>
-        <nav class="navbar navbar-expand-xl navbar-dark bg-primary" id="myNavbar">
+        <nav class="navbar navbar-expand-xl navbar-dark bg-primary fixed-top" id="myNavbar">
             <div class="container">
                 <a class="navbar-brand sup" style="display: flex; align-items: center;" href="{{ url('/') }}">
                     <i><img class="imagesize mr-2" src="{{ asset('images/logo.png') }}" width="70" height="70"
                             alt="Logo"></i>
-                    <b>BEAUTY PRODUCTS</b>
+                    <b>PEACHY'S COLLECTION</b>
                 </a>
                 <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
                     data-target="#navbar17">
@@ -162,29 +165,40 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             @if (auth()->user()->is_admin == 1)
-                                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
+                            <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
+        <b class="text-uppercase">HOME</b>
+    </a></li>
+                                <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
                                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link"><b class="text-uppercase">ORDERS</b></a></li>
                             @else
-                                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
+                            <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
+        <b class="text-uppercase">HOME</b>
+    </a></li>
+                                <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
                                 <cart/>
                             @endif
                         @else
-                            <li class="nav-item"><a href="{{ url('/') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
+                        <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
+        <b class="text-uppercase">HOME</b>
+    </a></li>
+                            <li class="nav-item"><a href="{{ route('product') }}" class="nav-link">
+        <b class="text-uppercase">PRODUCTS</b>
+    </a></li>
                         @endauth
                     </ul>
                     <div class="row">
                         <div class="col-md-12">
                             @auth
-                                <a class="navbar-brand" href="{{ route('logout') }}"><i class="fa d-inline fa-lg fa-user-circle-o"></i><b class="pl-2">Logout</b></a>
+                                <a class="navbar-brand" href="{{ route('logout') }}"><b class="pl-2">Logout</b></a>
                             @else
-                                <a class="navbar-brand" href="{{ route('login') }}"><i class="fa d-inline fa-lg fa-user-circle-o"></i><b class="size pl-2">Login</b></a>
+                                <a class="navbar-brand" href="{{ route('login') }}"><b class="size pl-2">Login</b></a>
                             @endauth
                         </div>
                     </div>
                     @guest
                     <div class="row">
                         <div class="col-md-12">
-                            <a class="navbar-brand" href="{{ url('/register') }}"><i class="fa d-inline fa-lg fa-user-circle-o"></i><b class="size pl-2">Register</b></a>
+                            <a class="navbar-brand" href="{{ url('/register') }}"></i><b class="size pl-2">Register</b></a>
                         </div>
                     </div>
                     @endguest

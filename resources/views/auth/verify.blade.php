@@ -25,4 +25,5 @@
         </div>
     </div>
 </div>
+<div class="container mt-5"><div class="col-md-8 mt-5 mb-5 pt-5 pb-5"></div></div>
 @endsection

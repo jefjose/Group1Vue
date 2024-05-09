@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a class="btn btn-primary" @click.prevent="addProductToCart()"><b>Add to Cart</b></a>
+        <a class="btn btn-primary my-custom-btn" @click.prevent="addProductToCart()"><b>Add to Cart</b></a>
     </div>
 </template>
 
@@ -31,3 +31,17 @@
         }
     }
 </script>
+<style scoped>
+.my-custom-btn.btn-primary {
+  --bs-btn-bg: #FFFFFF !important;
+  --bs-btn-border-color: #000000 !important;
+  color: #000000 !important; 
+}
+
+
+.my-custom-btn.btn-primary:hover {
+  background-color: #000000 !important;
+  color: #FFFFFF !important; 
+  border-color: black;
+}
+</style>

@@ -1,14 +1,15 @@
 @extends('layouts.frontend')
 
 @section('content')
-<div class="container">
+<div class="container mt-5"><div class="col-md-8 mt-5 mb-5 pt-5 pb-5"></div></div>
+<div class="container mt-5 mb-5 pt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-8 d-flex justify-content-center">
+            <div class="card w-75">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form class="mt-5 mb-5" method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -70,4 +71,6 @@
         </div>
     </div>
 </div>
+<div class="container mt-5"><div class="col-md-8 mt-5 mb-5 pt-5 pb-5"></div></div>
+
 @endsection

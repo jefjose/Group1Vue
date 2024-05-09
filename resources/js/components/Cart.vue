@@ -1,22 +1,6 @@
 <template>
     <div>
-        <li class="nav-item"> 
-            <a href="{{ url('/') }}" class="btn btn-warning btn-sm"><b style=""
-                                    class="text-uppercase">CART {{itemCount}}</b></a> </li>
+        <a href="/checkout" class="btn btn-warning btn-md"><b style="" class="text-uppercase">CART
+            </b></a>
     </div>
 </template>
-
-<script>
-    export default {
-        data(){
-            return{
-                itemCount: '',
-            }
-        },
-        mounted() {
-            this.$root.$on('changeInCart', (item) => {
-                this.itemCount = item
-            })
-        }
-    }
-</script>

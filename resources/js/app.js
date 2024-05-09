@@ -17,11 +17,14 @@ const app = createApp({});
 import ExampleComponent from './components/ExampleComponent.vue';
 import AddToCart from './components/AddToCart.vue';
 import Cart from './components/Cart.vue';
+import Checkout from './components/Checkout.vue';
 
 app.component('example-component', ExampleComponent);
 
 app.component('add-to-cart-button', AddToCart);
 app.component('cart-button', Cart);
+app.component('checkout', Checkout);
+
 
 /**
  * The following block of code may be used to automatically register your

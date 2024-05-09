@@ -13,7 +13,7 @@ class CartsController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.checkout');
     }
 
     /**
@@ -31,11 +31,11 @@ class CartsController extends Controller
     {
         $product = Product::where('id', $request->get('product_id'))->first();
         $productFoundInCart = Cart::where('product_id', $request->get('product_id'))->pluck('id');
-        
+
         //Count User's Cart Items
         $userItems = Cart::where('user_id', auth()->user()->id)->sum('quantity');
 
-        if($productFoundInCart->isEmpty()){
+        if ($productFoundInCart->isEmpty()) {
             //Add To Cart
             $cart = Cart::create([
                 'user_id' => auth()->user()->id,
@@ -48,7 +48,7 @@ class CartsController extends Controller
             $cart = Cart::where('product_id', $request->get('product_id'))->increment('quantity');
         }
 
-        if($cart){
+        if ($cart) {
             return [
                 'message' => 'Cart Updated',
                 'items' => $userItems
@@ -88,5 +88,40 @@ class CartsController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getCartItemsForCheckout()
+    {
+
+        $cartItems = Cart::with('product')->where('user_id', auth()->user()->id)->get();
+        $finalData = [];
+
+        $amount = 0;
+
+        if (isset($cartItems)) {
+            foreach ($cartItems as $cartItem) {
+                if ($cartItem->product) {
+                    foreach ($cartItem->product as $cartProduct) {
+                        if ($cartProduct->id == $cartItem->product_id) {
+                            $finalData[$cartItem->product_id]['id'] = $cartProduct->id;
+                            $finalData[$cartItem->product_id]['name'] = $cartProduct->name;
+                            $finalData[$cartItem->product_id]['quantity'] = $cartItem->quantity;
+                            $finalData[$cartItem->product_id]['price'] = $cartItem->price;
+                            $finalData[$cartItem->product_id]['total'] = $cartItem->price * $cartItem->quantity;
+                            $amount += $cartItem->price * $cartItem->quantity;
+                            $finalData['totalAmount'] = $amount;
+                        }
+                    }
+
+                }
+
+            }
+        }
+        return response()->json($finalData);
+
+    }
+
+    public function processPayment(Request $request){
+        dd($request->all());
     }
 }

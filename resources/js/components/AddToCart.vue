@@ -22,7 +22,7 @@
                 let response = await axios.post('/cart', {
                     'product_id': this.productId
                 });
-
+                alert("Added to cart");
                 this.$root.$emit('changeInCart', response.data.items);
             }
         },

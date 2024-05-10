@@ -25,8 +25,9 @@
         <div class="container">
             <div class="row"></div>
             <div class="row">
-                <div class="col-md-12 mt-5">
-                    <h1 class="text-center">Orders</h1>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                    <h1 class="text-center border-top border-bottom border-dark">ORDERS</h1>
                 </div>
             </div>
         </div>
@@ -88,6 +89,9 @@
                                 </div>
                                 <div class="table-responsive table-bordered">
                                     <table class="table">
+                                        <br>
+                                        <h1>Pending/Processing</h1>  
+                                        <br>
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
@@ -141,7 +145,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                            @if ($orders->where('status', 'Processing')->isEmpty())
+                                            @if ($orders->where('status', 'Pending')->isEmpty())
                                                 <tr>
                                                     <td colspan="13" class="text-center">No Current Orders</td>
                                                 </tr>
@@ -153,6 +157,9 @@
 
                                 <div class="table-responsive table-bordered mt-5">
                                     <table class="table">
+                                    <br>
+                                    <h1>Completed</h1>
+                                    <br>
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
@@ -189,6 +196,9 @@
 
                                 <div class="table-responsive table-bordered mt-5">
                                     <table class="table">
+                                        <br>
+                                        <h1>Cancelled</h1>
+                                        <br>
                                         <thead>
                                             <tr>
                                                 <th>Date</th>

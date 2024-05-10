@@ -25,8 +25,9 @@
         <div class="container">
             <div class="row"></div>
             <div class="row">
-                <div class="col-md-12 mt-5">
-                    <h1 class="text-center">My Orders</h1>
+            <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h1 class="text-center border-top border-bottom border-dark">MY ORDERS</h1>
                 </div>
             </div>
             
@@ -99,7 +100,18 @@
                                                         <td>{{ $order->customer_address }}</td>
                                                         <td>{{ $order->total_amount}}</td>
                                                         <td>{{$item->order_id}}</td>
-                                                        <td>{{$order->status}}</td>
+                                                        <td>
+                                                            @if ($order->status === 'Pending')
+                                                                <i class="fas fa-exclamation-circle text-warning"></i> 
+                                                            @elseif ($order->status === 'Processing')
+                                                                <i class="fas fa-hourglass-half text-info"></i> 
+                                                            @elseif ($order->status === 'Completed')
+                                                                <i class="fas fa-check-circle text-success"></i> 
+                                                            @elseif ($order->status === 'Cancelled')
+                                                                <i class="fas fa-times-circle text-danger"></i> 
+                                                            @endif
+                                                            {{ $order->status }}
+                                                        </td>
                                                         @endforeach
                                                         <td class="">
                                                             <div class="btn-group">

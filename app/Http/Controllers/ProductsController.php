@@ -12,7 +12,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(9);
 
         return view('product', compact('products'));
     }
@@ -64,4 +64,15 @@ class ProductsController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'like', "%$query%")
+            ->orWhere('description', 'like', "%$query%")
+            ->get();
+
+        return view('pages.search', compact('products'));
+    }
+
 }

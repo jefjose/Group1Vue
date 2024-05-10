@@ -75,7 +75,7 @@
     body {
         margin: 0;
         padding: 0;
-
+        
         background-image: url("{{ asset('images/bgt.png') }}");
         background-size: cover;
         background-attachment: fixed;
@@ -153,7 +153,7 @@
         <nav class="navbar navbar-expand-xl navbar-dark bg-primary fixed-top" id="myNavbar">
             <div class="container">
                 <a class="navbar-brand sup" style="display: flex; align-items: center;" href="{{ url('/') }}">
-                    <i><img class="imagesize mr-2" src="{{ asset('images/logo.png') }}" width="70" height="70"
+                    <i><img class="imagesize mr-2" src="{{ asset('./images/logo.png') }}" width="45" height="45"
                             alt="Logo"></i>
                     <b>PEACHY'S COLLECTION</b>
                 </a>
@@ -274,40 +274,33 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 p-3 text-center">
-                    <h5><b>PARISH OFFICE HOURS</b></h5>
+                    <br>
+                    <h5><b>DELIVERY HOURS</b></h5>
                     <p class="mb-0">
-                        Monday to Sunday <br><br>
-                        9:00 AM - 12:00 NN<br><br>
-                        1:30 PM - 5:30 PM<br>
+                        <br>
+                        Monday to Friday <br>
+                        8:00 AM - 5:00 NN<br><br>
                     </p>
                 </div>
 
                 <div class="col-md-6 text-center my-3">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid mt-3 mb-3"
                         style="width: 100px; height: 100px; margin-bottom: 10px; margin-top: 10px;">
-                    <p class="mt-3">ARCHDIOCESAN SHRINE AND PARISH OF ESPIRITU SANTO</p>
+                    <p class="mt-3">PEACHY'S COLLECTIONS</p>
                     <div class="col-md-12 d-flex align-items-center justify-content-center">
-                        <a href="https://www.facebook.com/ASESmultimedia" target="_blank">
+                        <a href="https://www.facebook.com/profile.php?id=100085082030532" target="_blank">
                             <i class="d-block fa fa-facebook-official fa-lg mr-2 my-2 text-light"></i>
                         </a>
-                        <a href="about/contacts">
-                            <i class="d-block fa fa-envelope text-light fa-lg mx-2"></i>
+                        <a href="https://shopee.ph/patriciamaealvarez" target="_blank">
+                            <i class="fas fa-shopping-bag my-2 mr-2 text-light"></i>
                         </a>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6 p-3 text-center">
-                    <h5><b>CONTACT US</b></h5>
-                    <p class="mb-0"> PLDT: 8711-13-32 <br><br> Globe: 87943-10-13
-                        <br><br> Smart: 0961-762-1626 <br><br> DITO: 0993-803-7760
-                    </p>
-                </div>
-
             </div>
             <hr class="mt-4 mb-3">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <p>&copy; 2023 ASPES | All rights reserved.</p>
+                    <p>&copy; 2024 | All rights reserved.</p>
                 </div>
             </div>
         </div>

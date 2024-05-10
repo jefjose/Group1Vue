@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="pt-5">
+    <div class="pt-5 mt-5">
     <div class="container">
         <div class="row"></div>
         @auth

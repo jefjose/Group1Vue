@@ -169,6 +169,7 @@
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
         <b class="text-uppercase">HOME</b>
     </a></li>
+    <li class="nav-item"><a href="{{ url('/inventory/product') }}" class="nav-link"><b class="text-uppercase">INVENTORY</b></a></li>
                                 <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase">ORDERS</b></a></li>
                             @else
                                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">

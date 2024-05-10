@@ -39,3 +39,12 @@ Route::get('/order/admin/{orderId}', [OrdersController::class, 'orderAdmin'])->n
 
 Route::get('/order/user/{orderId}', [OrdersController::class, 'orderUser'])->name('order.show.user');
 Route::get('/order-report', [OrdersController::class, 'generateOrderReport'])->name('report.orders');
+
+Route::get('/inventory/product/', [ProductsController::class, 'index2'])->name('product.inventory');
+Route::get('/inventory/product/add', [ProductsController::class, 'create'])->name('product.create');
+Route::post('/inventory/product/store', [ProductsController::class, 'store'])->name('product.store');
+
+Route::get('/inventory/product/edit/{product}', [ProductsController::class, 'edit'])->name('product.edit');
+Route::put('/inventory/product/update/{product}', [ProductsController::class, 'update'])->name('product.update');
+Route::delete('/inventory/product/destroy/{product}', [ProductsController::class, 'destroy'])->name('product.destroy');
+

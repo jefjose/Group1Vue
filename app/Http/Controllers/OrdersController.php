@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
-
+use Illuminate\Support\Facades\Auth;
 class OrdersController extends Controller
 {
     /**
@@ -16,6 +16,17 @@ class OrdersController extends Controller
         $orders = Order::get();
 
         return view('order', compact('orders'));
+    }
+
+    public function index2()
+    {
+        // Get the authenticated user's ID inside the method
+        $userId = Auth::id();
+
+        // Retrieve orders for the authenticated user
+        $orders = Order::where('user_id', $userId)->get();
+
+        return view('myorder', compact('orders'));
     }
 
     /**
@@ -42,9 +53,10 @@ class OrdersController extends Controller
             'items.*.quantity' => 'required|numeric|min:1',
             'items.*.price' => 'required|numeric|min:0',
         ]);
-
+        $userId = auth()->id();
         // Create a new order
         $order = Order::create([
+            'user_id' => $userId,
             'customer_first_name' => $request->input('firstname'),
             'customer_last_name' => $request->input('lastname'),
             'customer_contact' => $request->input('phone'),

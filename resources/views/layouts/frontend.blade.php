@@ -75,7 +75,7 @@
     body {
         margin: 0;
         padding: 0;
-        
+
         background-image: url("{{ asset('images/bgt.png') }}");
         background-size: cover;
         background-attachment: fixed;
@@ -143,6 +143,7 @@
         /* Adjust the font size as needed */
         cursor: pointer;
     }
+
     .bg-primary {
         background-color: #000000 !important;
     }
@@ -165,30 +166,46 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             @if (auth()->user()->is_admin == 1)
-                            <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
-        <b class="text-uppercase">HOME</b>
-    </a></li>
-                                <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
-                                <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase">ORDERS</b></a></li>
+                                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
+                                        <b class="text-uppercase">HOME</b>
+                                    </a></li>
+                                <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b
+                                            class="text-uppercase">PRODUCTS</b></a></li>
+                                <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b
+                                            class="text-uppercase">ORDERS</b></a></li>
                             @else
-                            <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
-        <b class="text-uppercase">HOME</b>
-    </a></li>
-                                <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
-                                <cart/>
+                                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
+                                        <b class="text-uppercase">HOME</b>
+                                    </a></li>
+                                <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b
+                                            class="text-uppercase">PRODUCTS</b></a></li>
+                                <li class="nav-item"><a href="{{ url('/myorders') }}" class="nav-link"><b
+                                            class="text-uppercase">MY ORDERS</b></a></li>
                             @endif
                         @else
-                        <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
-        <b class="text-uppercase">HOME</b>
-    </a></li>
+                            <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
+                                    <b class="text-uppercase">HOME</b>
+                                </a></li>
                             <li class="nav-item"><a href="{{ route('product') }}" class="nav-link">
-        <b class="text-uppercase">PRODUCTS</b>
-    </a></li>
+                                    <b class="text-uppercase">PRODUCTS</b>
+                                </a></li>
                         @endauth
                     </ul>
                     <div class="row">
                         <div class="col-md-12">
                             @auth
+                                @if (auth()->user()->is_admin == 1)
+                                    <a class="navbar-brand" style="color: white;">
+                                        <i class="fas fa-crown"></i> <!-- Font Awesome crown icon -->
+                                        <b class="pl-2">{{ auth()->user()->name }}</b>
+                                    </a>
+
+                                @else
+                                    <a class="navbar-brand" style="color: white;">
+                                        <i class="fas fa-user"></i>
+                                        <b class="pl-2">{{ auth()->user()->name }}</b>
+                                    </a>
+                                @endif
                                 <a class="navbar-brand" href="{{ route('logout') }}"><b class="pl-2">Logout</b></a>
                             @else
                                 <a class="navbar-brand" href="{{ route('login') }}"><b class="size pl-2">Login</b></a>
@@ -196,15 +213,16 @@
                         </div>
                     </div>
                     @guest
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="navbar-brand" href="{{ url('/register') }}"></i><b class="size pl-2">Register</b></a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="navbar-brand" href="{{ url('/register') }}"></i><b
+                                        class="size pl-2">Register</b></a>
+                            </div>
                         </div>
-                    </div>
                     @endguest
                 </div>
             </div>
-        </nav>        
+        </nav>
         <!-- Check if there is a success message in the session -->
         @if (session('success'))
             <div class="alert-container">
@@ -250,12 +268,12 @@
             }
 
             // Automatically hide success message after 5 seconds
-            setTimeout(function() {
+            setTimeout(function () {
                 closeAlert('success-alert');
             }, 5000);
 
             // Automatically hide error message after 5 seconds
-            setTimeout(function() {
+            setTimeout(function () {
                 closeAlert('error-alert');
             }, 5000);
         </script>
@@ -305,24 +323,24 @@
             </div>
         </div>
     </footer>
-     <!-- JavaScript -->
-     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
- 
-     <script>
-         $(document).ready(function() {
-             $('[data-toggle="popover"]').popover();
-             $('[data-toggle="tooltip"]').tooltip();
-             $('#datepicker-example').datepicker({
-                 calendarWeeks: true,
-                 autoclose: true,
-                 todayHighlight: true
-             });
-         });
-     </script>
-     @yield('scripts')
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="tooltip"]').tooltip();
+            $('#datepicker-example').datepicker({
+                calendarWeeks: true,
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+    @yield('scripts')
 </body>
 
 </html>

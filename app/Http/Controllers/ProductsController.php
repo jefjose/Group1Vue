@@ -160,15 +160,22 @@ class ProductsController extends Controller
         $data = $validator->validated();
 
         if ($request->hasFile('image_name')) {
-
             if ($product->image_name) {
                 \Storage::disk('public')->delete($product->image_name);
             }
-
-            
-            $imagePath = $request->file('image_name')->storeAs('', $request->file('image_name')->getClientOriginalName(), 'public');
-                $data['image_name'] = $request->file('image_name')->getClientOriginalName();
+        
+            $file = $request->file('image_name');
+        
+            // Generate a unique filename using uniqid() and append the original file extension
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+        
+            // Store the file in the 'images' directory within the 'public' disk with the randomized filename
+            $imagePath = $file->storeAs('images', $filename, 'public');
+        
+            // Assign the randomized filename to the 'image_name' attribute in the $data array
+            $data['image_name'] = $filename;
         }
+        
 
         $product->update($data);
 

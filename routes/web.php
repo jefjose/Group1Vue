@@ -17,7 +17,9 @@ Route::post('/cart', [CartsController::class, 'store'])->name('store');
 Route::get('/product', [ProductsController::class, 'index'])->name('product'); // Change to GET route
 Route::get('/checkout', [CartsController::class, 'index'])->name('checkout');
 
+
 Route::post('/checkout/store', [OrdersController::class, 'store']);
+Route::get('/orders', [OrdersController::class, 'index']);
 
 Route::delete('/delete-item/{itemId}', [CartsController::class, 'deleteItem'])->name('delete-item');
 

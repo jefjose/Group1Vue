@@ -169,7 +169,7 @@
         <b class="text-uppercase">HOME</b>
     </a></li>
                                 <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
-                                <li class="nav-item"><a href="{{ url('/') }}" class="nav-link"><b class="text-uppercase">ORDERS</b></a></li>
+                                <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase">ORDERS</b></a></li>
                             @else
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
         <b class="text-uppercase">HOME</b>

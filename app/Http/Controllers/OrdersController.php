@@ -13,7 +13,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::get();
+
+        return view('order', compact('orders'));
     }
 
     /**

@@ -17,11 +17,6 @@
         type="text/css">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Manually import Vite-generated CSS -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
-    <!-- Manually import Vite-generated JS -->
-    <script src="{{ asset('js/app.js') }}"></script>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <style>

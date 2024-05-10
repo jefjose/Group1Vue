@@ -177,8 +177,8 @@
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
         <b class="text-uppercase" style="color: white;">HOME</b>
     </a></li>
-    <li class="nav-item"><a href="{{ url('/inventory/product') }}" class="nav-link" ><b class="text-uppercase" style="color: white;">INVENTORY</b></a></li>
-                                <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase" style="color: white;">ORDERS</b></a></li>
+    <li class="nav-item"><a href="{{ url('/inventory/product') }}" class="nav-link" ><b class="text-uppercase" style="color: white;">MANAGE INVENTORY</b></a></li>
+                                <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase" style="color: white;">MANAGE ORDERS</b></a></li>
                             @else
                                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
                                         <b class="text-uppercase" style="color: white;">HOME</b>

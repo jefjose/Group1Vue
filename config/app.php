@@ -165,7 +165,6 @@ return [
          */
         Laravel\Sail\SailServiceProvider::class,
         App\Providers\AppServiceProvider::class,
-        Barryvdh\Snappy\ServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
     ])->toArray(),
 
@@ -182,7 +181,6 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Sail' => Laravel\Sail\SailServiceProvider::class,
-        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

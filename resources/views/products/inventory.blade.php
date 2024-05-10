@@ -15,15 +15,6 @@
             <div class="row"></div>
         </div>
     </div>
-    <div class="pt-0 pb-0 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 mt-5">
-                    <h1 class="text-center">Inventory</h1>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="text-center" style="">
         <div class="container">
 

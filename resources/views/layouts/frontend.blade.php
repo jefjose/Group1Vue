@@ -168,7 +168,6 @@
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
         <b class="text-uppercase">HOME</b>
     </a></li>
-                                <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b class="text-uppercase">PRODUCTS</b></a></li>
                                 <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase">ORDERS</b></a></li>
                             @else
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
@@ -205,60 +204,6 @@
                 </div>
             </div>
         </nav>        
-        <!-- Check if there is a success message in the session -->
-        @if (session('success'))
-            <div class="alert-container">
-                <div class="alert alert-success" id="success-alert">
-                    <span class="close-btn" onclick="closeAlert('success-alert')">&times;</span>
-                    @if (is_array(session('success')))
-                        <ul>
-                            @foreach (session('success') as $message)
-                                <li><b>{{ $message }}</b></li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <p><b>{{ session('success') }}</b></p>
-                    @endif
-                </div>
-            </div>
-        @endif
-
-        <!-- Check if there is an error message in the session -->
-        @if (session('error'))
-            <div class="alert-container">
-                <div class="alert alert-danger" id="error-alert">
-                    <span class="close-btn" onclick="closeAlert('error-alert')">&times;</span>
-                    @if (is_array(session('error')))
-                        <ul>
-                            @foreach (session('error') as $message)
-                                <li><b>{{ $message }}</b></li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <p><b>{{ session('error') }}</b></p>
-                    @endif
-                </div>
-            </div>
-        @endif
-
-
-
-        <!-- Your existing form and JavaScript code -->
-        <script>
-            function closeAlert(alertId) {
-                $('#' + alertId).remove();
-            }
-
-            // Automatically hide success message after 5 seconds
-            setTimeout(function() {
-                closeAlert('success-alert');
-            }, 5000);
-
-            // Automatically hide error message after 5 seconds
-            setTimeout(function() {
-                closeAlert('error-alert');
-            }, 5000);
-        </script>
     </header>
 
     <main>

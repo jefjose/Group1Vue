@@ -18,6 +18,47 @@ class OrdersController extends Controller
         return view('order', compact('orders'));
     }
 
+    public function orderAdmin($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        return view('orders.admin', compact('order'));
+    }
+
+    public function orderStatusAdmin(Request $request, $orderId)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'status' => 'required|in:Processing,Completed,Cancelled',
+        ]);
+
+        // Find the order by its ID
+        $order = Order::findOrFail($orderId);
+
+        // Update the status of the order
+        $order->status = $request->status;
+        $order->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Order status updated successfully.');
+    }
+
+    public function orderDeleteAdmin($orderId)
+{
+    $order = Order::find($orderId);
+
+    if (!$order) {
+        return response()->json(['message' => 'Order not found'], 404);
+    }
+
+    // Update the status of the order to "Cancelled"
+    $order->status = 'Cancelled';
+    $order->save();
+
+    return redirect()->back();
+}
+
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -45,11 +86,12 @@ class OrdersController extends Controller
 
         // Create a new order
         $order = Order::create([
+            'user_id' => auth()->id(),
             'customer_first_name' => $request->input('firstname'),
             'customer_last_name' => $request->input('lastname'),
             'customer_contact' => $request->input('phone'),
             'customer_address' => $request->input('address'),
-            'status' => 'pending',
+            'status' => 'Pending',
         ]);
 
         // Create order items

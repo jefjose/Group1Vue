@@ -11,19 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
-            $table->string('quantity');
+            $table->integer('quantity');
             $table->decimal('price', 8, 2);
-            
-
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            // Add foreign key constraint to connect order items to orders table
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('order_items');
     }
 };

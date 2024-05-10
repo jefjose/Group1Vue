@@ -14,11 +14,11 @@
                         <div v-else>
                             <div class="plan-selection" v-for="item in items" :key="item.id">
                                 <div class="plan-data" v-if="item.name">
-                                    <input id="question1" name="question" type="radio" class="with-font" value="sel" />
+                                    <input id="question1" name="question" type="radio" class="with-font" value="sel" disabled/>
                                     <label for="question1">{{item.name}}</label>
                                     <p class="plan-text">Quantity: {{item.quantity}}</p>
                                     <span class="plan-price">Price: ₱{{item.price}}</span>
-                                    <button @click="deleteItem(item.id)">Delete</button>
+                                    <button style="background-color: #ff0000; color: #ffffff; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; margin-left: 3.5vh;" @click="deleteItem(item.id)">Remove</button>
                                 </div>
                             </div>
                         </div>
@@ -30,6 +30,7 @@
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <div class="col-md-12">
+                                            <br>
                                             <h4>Shipping Address</h4>
                                             <br>
                                         </div>

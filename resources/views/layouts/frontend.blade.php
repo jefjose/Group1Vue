@@ -17,7 +17,7 @@
         type="text/css">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <style>
     @media (max-width: 1250px) {

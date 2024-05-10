@@ -58,6 +58,37 @@ class CartsController extends Controller
         dd($product);
     }
 
+    public function clearCart()
+{
+    $userId = auth()->id();
+    Cart::where('user_id', $userId)->delete();
+
+    return response()->json(['message' => 'Cart cleared']);
+}
+
+public function deleteItem($itemId)
+{
+    $cartItem = Cart::where('product_id', $itemId)->first();
+
+    if (!$cartItem) {
+        return response()->json(['message' => 'Item not found'], 404);
+    }
+
+    if ($cartItem->quantity > 1) {
+        $cartItem->quantity -= 1;
+        $cartItem->save();
+    } else {
+        $cartItem->delete();
+    }
+
+    return response()->json(['message' => 'Item deleted successfully']);
+}
+
+
+    
+
+
+
     /**
      * Display the specified resource.
      */
@@ -91,35 +122,31 @@ class CartsController extends Controller
     }
 
     public function getCartItemsForCheckout()
-    {
+{
+    $cartItems = Cart::with('product')->where('user_id', auth()->user()->id)->get();
+    $finalData = [];
+    $totalAmount = 0;
 
-        $cartItems = Cart::with('product')->where('user_id', auth()->user()->id)->get();
-        $finalData = [];
-
-        $amount = 0;
-
-        if (isset($cartItems)) {
-            foreach ($cartItems as $cartItem) {
-                if ($cartItem->product) {
-                    foreach ($cartItem->product as $cartProduct) {
-                        if ($cartProduct->id == $cartItem->product_id) {
-                            $finalData[$cartItem->product_id]['id'] = $cartProduct->id;
-                            $finalData[$cartItem->product_id]['name'] = $cartProduct->name;
-                            $finalData[$cartItem->product_id]['quantity'] = $cartItem->quantity;
-                            $finalData[$cartItem->product_id]['price'] = $cartItem->price;
-                            $finalData[$cartItem->product_id]['total'] = $cartItem->price * $cartItem->quantity;
-                            $amount += $cartItem->price * $cartItem->quantity;
-                            $finalData['totalAmount'] = $amount;
-                        }
+    if ($cartItems) {
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem->product) {
+                foreach ($cartItem->product as $cartProduct) {
+                    if ($cartProduct->id == $cartItem->product_id) {
+                        $finalData[] = [
+                            'id' => $cartProduct->id,
+                            'name' => $cartProduct->name,
+                            'quantity' => $cartItem->quantity,
+                            'price' => $cartItem->price,
+                            'total' => $cartItem->price * $cartItem->quantity,
+                        ];
+                        $totalAmount += $cartItem->price * $cartItem->quantity;
                     }
-
                 }
-
             }
         }
-        return response()->json($finalData);
-
     }
+    return response()->json($finalData);
+}
 
     public function processPayment(Request $request){
         dd($request->all());

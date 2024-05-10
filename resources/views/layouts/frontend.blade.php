@@ -154,7 +154,7 @@
         <nav class="navbar navbar-expand-xl navbar-dark bg-primary fixed-top" id="myNavbar">
             <div class="container">
                 <a class="navbar-brand sup" style="display: flex; align-items: center;" href="{{ url('/') }}">
-                    <i><img class="imagesize mr-2" src="{{ asset('./images/logo.png') }}" width="45" height="45"
+                    <i><img class="imagesize mr-2" src="{{ asset('storage/images/logo.png') }}" width="45" height="45"
                             alt="Logo"></i>
                     <b>PEACHY'S COLLECTION</b>
                 </a>

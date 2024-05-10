@@ -91,16 +91,14 @@
                                         </div>
                                         @if ($product->image_name)
                                             <div class="row mb-3">
-                                                <label
-                                                    class="col-md-4 col-form-label text-md-end">{{ __('Current Image') }}</label>
-
+                                                <label class="col-md-4 col-form-label text-md-end">{{ __('Current Image') }}</label>
                                                 <div class="col-md-6">
-                                                    <img class="img-thumbnail"
-                                                        src="{{ asset('storage/images/' . $product->image_name) }}"
-                                                        alt="image not found">
+                                                    <img class="img-thumbnail" src="{{ asset('storage/images/' . $product->image_name) }}"
+                                                        alt="image not found" style="min-width: 150px; max-width: 250px;">
                                                 </div>
                                             </div>
                                         @endif
+
 
                                         <div class="row mb-3">
                                             <label for="price"

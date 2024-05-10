@@ -69,7 +69,7 @@
                                             <tr>
                                                 <td>{{ $item->name }}</td>
                                                 <td style="max-width: 500px; word-break: break-word; text-align: left;">{{ $item->description }}</td>
-                                                <td style="min-width: 300px; max-width: 500px;">
+                                                <td style="min-width: 75px; max-width: 125px;">
                                                     @if ($item->image_name)
                                                         <a href="{{ asset('storage/images/' . $item->image_name) }}" download>
                                                             <img src="{{ asset('storage/images/' . $item->image_name) }}" class="img-thumbnail" alt="Product Image">

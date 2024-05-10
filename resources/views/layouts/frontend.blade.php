@@ -20,6 +20,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
 </head>
 <style>
+    
     @media (max-width: 1250px) {
         .sup {
             font-size: 12px;
@@ -67,11 +68,11 @@
             font-size: 0.75rem;
         }
     }
-
-    main {
-        flex: 1;
-    }
-
+    html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
     body {
         margin: 0;
         padding: 0;
@@ -82,9 +83,12 @@
         /* Keeps the background fixed */
         background-repeat: no-repeat;
         /* Prevents background from repeating */
-
+        display: flex;
+         flex-direction: column;
     }
-
+    main {
+    flex-grow: 1;
+    }
     .shadows {}
 
     input,
@@ -150,6 +154,7 @@
     .nav-item{
         color: white !important;
     }
+   
 </style>
 
 <body class="content">
@@ -170,10 +175,10 @@
                         @auth
                             @if (auth()->user()->is_admin == 1)
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
-        <b class="text-uppercase">HOME</b>
+        <b class="text-uppercase" style="color: white;">HOME</b>
     </a></li>
-    <li class="nav-item"><a href="{{ url('/inventory/product') }}" class="nav-link"><b class="text-uppercase">INVENTORY</b></a></li>
-                                <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase">ORDERS</b></a></li>
+    <li class="nav-item"><a href="{{ url('/inventory/product') }}" class="nav-link" ><b class="text-uppercase" style="color: white;">INVENTORY</b></a></li>
+                                <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b class="text-uppercase" style="color: white;">ORDERS</b></a></li>
                             @else
                                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
                                         <b class="text-uppercase" style="color: white;">HOME</b>

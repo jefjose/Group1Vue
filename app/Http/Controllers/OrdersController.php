@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
+
 class OrdersController extends Controller
 {
     /**
@@ -73,6 +78,56 @@ class OrdersController extends Controller
 
     return redirect()->back();
 }
+
+public function generateOrderReport(Request $request)
+{
+    $startMonthYear = $request->input('startMonthYear');
+    $endMonthYear = $request->input('endMonthYear');
+
+    // If $startMonthYear or $endMonthYear is not provided or is invalid, default to the current month and year
+    $startOfMonth = $startMonthYear
+        ? Carbon::createFromFormat('Y-m', $startMonthYear)->startOfMonth()
+        : Carbon::now()->startOfMonth();
+
+    $endOfMonth = $endMonthYear
+        ? Carbon::createFromFormat('Y-m', $endMonthYear)->endOfMonth()
+        : Carbon::now()->endOfMonth();
+
+    // Validate the date range
+    if ($startOfMonth->gt($endOfMonth)) {
+        return redirect()->back()->with('error', 'Invalid date range. Start date cannot be later than end date.');
+    }
+
+    // Fetch orders completed and cancelled within the date range
+    $ordersCompleted = Order::whereBetween('created_at', [$startOfMonth, $endOfMonth])
+        ->where('status', 'Completed')
+        ->sum('total_amount');
+
+    $ordersCancelled = Order::whereBetween('created_at', [$startOfMonth, $endOfMonth])
+        ->where('status', 'Cancelled')
+        ->sum('total_amount');
+
+    // Fetch all orders within the date range
+    $orders = Order::whereBetween('created_at', [$startOfMonth, $endOfMonth])
+        ->orderBy('created_at')
+        ->get();
+    
+    $totalCompletedOrders = $orders->where('status', 'Completed')->sum('total_amount');
+    $totalCancelledOrders = $orders->where('status', 'Cancelled')->sum('total_amount');
+
+
+    // Generate PDF report
+    $pdf = Pdf::loadView('reports.orders', compact('orders', 'ordersCompleted', 'ordersCancelled', 'totalCompletedOrders', 'totalCancelledOrders', 'startMonthYear', 'endMonthYear', 'startOfMonth', 'endOfMonth'))->setPaper('a4', 'landscape');
+
+    // Generate filename for the PDF report
+    $fileName = 'orders-report-' . ($startMonthYear !== $endMonthYear
+        ? $startOfMonth->format('M-Y') . '_to_' . $endOfMonth->format('M-Y')
+        : $startOfMonth->format('M-Y')) . '.pdf';
+
+    // Stream the PDF report for viewing
+    return $pdf->stream($fileName);
+}
+
 
 
 

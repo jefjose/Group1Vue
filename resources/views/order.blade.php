@@ -46,7 +46,7 @@
                                 <div class="col-md-12 mt-5"></div>
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
-                                    <form action="{{ route('product') }}" method="GET">
+                                    <form action="{{ route('report.orders') }}" method="GET">
                                         <div class="form-group">
                                             <label for="startMonthYear">Select Start Month and Year:</label>
                                             <input type="month" class="form-control" id="startMonthYear" name="startMonthYear"

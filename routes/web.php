@@ -35,6 +35,7 @@ Route::post('orders/{orderId}/update-status', [OrdersController::class, 'orderSt
 
 Route::delete('orders/{orderId}/delete-order', [OrdersController::class, 'orderDelete'])->name('order.delete.admin');
 
-Route::get('/order/{orderId}', [OrdersController::class, 'orderAdmin'])->name('order.show.admin');
+Route::get('/order/admin/{orderId}', [OrdersController::class, 'orderAdmin'])->name('order.show.admin');
 
-Route::get('/order/{orderId}', [OrdersController::class, 'orderAdmin'])->name('order.show.user');
+Route::get('/order/user/{orderId}', [OrdersController::class, 'orderUser'])->name('order.show.user');
+Route::get('/order-report', [OrdersController::class, 'generateOrderReport'])->name('report.orders');

@@ -104,19 +104,21 @@
                                                         <td class="">
                                                             <div class="btn-group">
                                                             <form method="get"
-                                                                    action="{{ route('product') }}">
+                                                                    action="{{ route('order.show.user', ['orderId' => $order->id]) }}">
                                                                     @csrf
                                                                     <button type="submit"
                                                                         class="btn btn-success ml-2"><b>View</b></button>
                                                                 </form>
+                                                                @if ($order->status == "Pending")
                                                                 <form method="post"
-                                                                    action="{{ route('product')  }}"
+                                                                    action="{{ route('order.delete.admin', ['orderId' => $order->id]) }}" onsubmit="return confirm('Are you sure you want to delete this order?')"
                                                                     onsubmit="return confirm('Are you sure you want to delete this order?')">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit"
                                                                         class="btn btn-danger ml-2"><b>Cancel</b></button>
                                                                 </form>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>

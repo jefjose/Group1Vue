@@ -35,6 +35,12 @@ class OrdersController extends Controller
         return view('orders.admin', compact('order'));
     }
 
+    public function orderUser($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        return view('orders.user', compact('order'));
+    }
+
     public function orderStatusAdmin(Request $request, $orderId)
     {
         // Validate the incoming request
@@ -53,7 +59,7 @@ class OrdersController extends Controller
         return redirect()->back()->with('success', 'Order status updated successfully.');
     }
 
-    public function orderDeleteAdmin($orderId)
+    public function orderDelete($orderId)
 {
     $order = Order::find($orderId);
 

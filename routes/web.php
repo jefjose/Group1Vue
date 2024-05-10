@@ -33,6 +33,8 @@ Route::get('/products/search', [ProductsController::class, 'search'])->name('pro
 Route::post('orders/{orderId}/update-status', [OrdersController::class, 'orderStatusAdmin'])->name('order.update.admin');
 
 
-Route::delete('orders/{orderId}/delete-order', [OrdersController::class, 'orderDeleteAdmin'])->name('order.delete.admin');
+Route::delete('orders/{orderId}/delete-order', [OrdersController::class, 'orderDelete'])->name('order.delete.admin');
 
 Route::get('/order/{orderId}', [OrdersController::class, 'orderAdmin'])->name('order.show.admin');
+
+Route::get('/order/{orderId}', [OrdersController::class, 'orderAdmin'])->name('order.show.user');

@@ -48,8 +48,17 @@ return new class extends Migration
 
         DB::table('users')->insert([
             'is_admin' => 0,
-            'name' => 'User',
-            'email' => 'user@gmail.com',
+            'name' => 'User1',
+            'email' => 'user1@gmail.com',
+            'password' => Hash::make('1'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'is_admin' => 0,
+            'name' => 'User2',
+            'email' => 'user2@gmail.com',
             'password' => Hash::make('1'),
             'created_at' => now(),
             'updated_at' => now(),

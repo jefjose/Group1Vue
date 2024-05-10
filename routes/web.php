@@ -7,7 +7,7 @@ use App\Http\Controllers\OrdersController;
 
 Route::get('/', function () {
     return view('home'); // Load home.blade.php as the starting page
-});
+})->name('home');
 
 Auth::routes();
 
@@ -19,6 +19,7 @@ Route::get('/checkout', [CartsController::class, 'index'])->name('checkout');
 
 
 Route::post('/checkout/store', [OrdersController::class, 'store']);
+Route::get('/myorders', [OrdersController::class, 'index2'])->name('myorders');
 Route::get('/orders', [OrdersController::class, 'index']);
 
 Route::delete('/delete-item/{itemId}', [CartsController::class, 'deleteItem'])->name('delete-item');

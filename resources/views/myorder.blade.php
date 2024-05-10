@@ -81,7 +81,7 @@
                                                 <th>Last Name</th>
                                                 <th>Contact</th>
                                                 <th>Address</th>
-                                                <th>To Pay</th>
+                                                <th>Total</th>
                                                 <th>Order Number</th>
                                                 <th>Status</th>
                                                 <th>Actions</th>
@@ -90,17 +90,14 @@
                                         <tbody>
                                             @foreach ($orders as $order)
                                                 @if ($order->id !== null)
-                                                @foreach ($order->orderItems as $item)
-                                                    <tr>
-                                                        
-                                                        <td>{{ \Carbon\Carbon::parse($order->created_at)->format('m/d/Y') }}</td>
-                                                        <td>{{ $order->customer_first_name }}</td>
-                                                        <td>{{ $order->customer_last_name }}</td>
-                                                        <td>{{ $order->customer_contact }}</td>
-                                                        <td>{{ $order->customer_address }}</td>
-                                                        <td>{{ $order->total_amount}}</td>
-                                                        <td>{{$item->order_id}}</td>
-                                                        <td>
+                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('m/d/Y') }}</td>
+                                                    <td>{{ $order->customer_first_name }}</td>
+                                                    <td>{{ $order->customer_last_name }}</td>
+                                                    <td>{{ $order->customer_contact }}</td>
+                                                    <td>{{ $order->customer_address }}</td>
+                                                    <td>{{ $order->total_amount }}</td>
+                                                    <td>{{ $order->id }}</td>
+                                                    <td>
                                                             @if ($order->status === 'Pending')
                                                                 <i class="fas fa-exclamation-circle text-warning"></i> 
                                                             @elseif ($order->status === 'Processing')
@@ -111,8 +108,7 @@
                                                                 <i class="fas fa-times-circle text-danger"></i> 
                                                             @endif
                                                             {{ $order->status }}
-                                                        </td>
-                                                        @endforeach
+                                                        </td>                      
                                                         <td class="">
                                                             <div class="btn-group">
                                                             <form method="get"

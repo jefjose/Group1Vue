@@ -41,7 +41,7 @@ return new class extends Migration
             'is_admin' => 1,
             'name' => 'SuperAdmin',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('1'),
+            'password' => Hash::make('Peach123!'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -50,7 +50,7 @@ return new class extends Migration
             'is_admin' => 0,
             'name' => 'User1',
             'email' => 'user1@gmail.com',
-            'password' => Hash::make('1'),
+            'password' => Hash::make('Peach123!'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -59,7 +59,7 @@ return new class extends Migration
             'is_admin' => 0,
             'name' => 'User2',
             'email' => 'user2@gmail.com',
-            'password' => Hash::make('1'),
+            'password' => Hash::make('Peach123!'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);

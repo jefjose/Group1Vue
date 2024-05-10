@@ -28,37 +28,42 @@ class CartsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $product = Product::where('id', $request->get('product_id'))->first();
-        $productFoundInCart = Cart::where('product_id', $request->get('product_id'))->pluck('id');
+{
+    $product = Product::find($request->get('product_id'));
+    $productFoundInCart = Cart::where('product_id', $request->get('product_id'))
+                                ->where('user_id', auth()->id())
+                                ->first();
 
-        //Count User's Cart Items
-        $userItems = Cart::where('user_id', auth()->user()->id)->sum('quantity');
+    // Count User's Cart Items
+    $userItems = Cart::where('user_id', auth()->user()->id)->sum('quantity');
 
-        if ($productFoundInCart->isEmpty()) {
-            //Add To Cart
-            $cart = Cart::create([
-                'user_id' => auth()->user()->id,
-                'product_id' => $product->id,
-                'quantity' => 1,
-                'price' => $product->price,
-            ]);
-        } else {
-            //Increment Product In Cart
-            $cart = Cart::where('product_id', $request->get('product_id'))->increment('quantity');
-        }
-
-        if ($cart) {
-            return [
-                'message' => 'Cart Updated',
-                'items' => $userItems
-            ];
-        }
-
-        dd($product);
+    if (!$productFoundInCart) {
+        // Add To Cart
+        $cart = Cart::create([
+            'user_id' => auth()->user()->id,
+            'product_id' => $product->id,
+            'quantity' => 1,
+            'price' => $product->price,
+        ]);
+    } else {
+        // Increment Product In Cart
+        $productFoundInCart->increment('quantity');
+        $cart = $productFoundInCart;
     }
 
-    public function clearCart()
+    if ($cart) {
+        return [
+            'message' => 'Cart Updated',
+            'items' => $userItems
+        ];
+    }
+
+    dd($product);
+}
+
+
+
+public function clearCart()
 {
     $userId = auth()->id();
     Cart::where('user_id', $userId)->delete();
@@ -68,21 +73,23 @@ class CartsController extends Controller
 
 public function deleteItem($itemId)
 {
-    $cartItem = Cart::where('product_id', $itemId)->first();
+    $cartItem = Cart::where('product_id', $itemId)
+                    ->where('user_id', auth()->id())
+                    ->first();
 
     if (!$cartItem) {
         return response()->json(['message' => 'Item not found'], 404);
     }
 
     if ($cartItem->quantity > 1) {
-        $cartItem->quantity -= 1;
-        $cartItem->save();
+        $cartItem->decrement('quantity');
     } else {
         $cartItem->delete();
     }
 
     return response()->json(['message' => 'Item deleted successfully']);
 }
+
 
 
     

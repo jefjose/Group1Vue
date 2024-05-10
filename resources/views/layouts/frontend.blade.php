@@ -147,6 +147,9 @@
     .bg-primary {
         background-color: #000000 !important;
     }
+    .nav-item{
+        color: white !important;
+    }
 </style>
 
 <body class="content">
@@ -167,31 +170,31 @@
                         @auth
                             @if (auth()->user()->is_admin == 1)
                                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
-                                        <b class="text-uppercase">HOME</b>
+                                        <b class="text-uppercase" style="color: white;">HOME</b>
                                     </a></li>
                                 <li class="nav-item"><a href="{{ url('/orders') }}" class="nav-link"><b
-                                            class="text-uppercase">ORDERS</b></a></li>
+                                            class="text-uppercase" style="color: white;">ORDERS</b></a></li>
                             @else
                                 <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
-                                        <b class="text-uppercase">HOME</b>
+                                        <b class="text-uppercase" style="color: white;">HOME</b>
                                     </a></li>
                                 <li class="nav-item"><a href="{{ url('/product') }}" class="nav-link"><b
-                                            class="text-uppercase">PRODUCTS</b></a></li>
+                                            class="text-uppercase" style="color: white;">PRODUCTS</b></a></li>
                                 <li class="nav-item"><a href="{{ url('/myorders') }}" class="nav-link"><b
-                                            class="text-uppercase">MY ORDERS</b></a></li>
+                                            class="text-uppercase" style="color: white;">MY ORDERS</b></a></li>
                                 <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">
-                                        <b class="text-uppercase">ABOUT</b>
+                                        <b class="text-uppercase" style="color: white;">ABOUT</b>
                                     </a></li>
                             @endif
                         @else
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
-                                    <b class="text-uppercase">HOME</b>
+                                    <b class="text-uppercase " style="color: white;">HOME</b>
                                 </a></li>
                             <li class="nav-item"><a href="{{ route('product') }}" class="nav-link">
-                                    <b class="text-uppercase">PRODUCTS</b>
+                                    <b class="text-uppercase" style="color: white;">PRODUCTS</b>
                                 </a></li>
                             <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">
-                                    <b class="text-uppercase">ABOUT</b>
+                                    <b class="text-uppercase" style="color: white;">ABOUT</b>
                                 </a></li>
                         @endauth
                     </ul>
@@ -237,12 +240,14 @@
 
 
 
-    <footer class="footer bg-dark text-light">
+    <footer class="footer bg-primary text-light">
         <div class="container mt-2">
             <div class="row">
 
-                <div class="col-lg-3 col-md-6 p-3 text-center">
+                <div class="col-lg-3 p-3 mt-5">
                     <br>
+                    <br>
+                    
                     <h5><b>DELIVERY HOURS</b></h5>
                     <p class="mb-0">
                         <br>
@@ -253,7 +258,7 @@
 
                 <div class="col-md-6 text-center my-3">
                     <img src="{{ asset('storage/images/logo.png') }}" alt="Logo" class="img-fluid mt-3 mb-3"
-                        style="width: 100px; height: 100px; margin-bottom: 10px; margin-top: 10px;">
+                        style="width: 150px; height: 150px; margin-bottom: 10px; margin-top: 10px;">
                     <p class="mt-3">PEACHY'S COLLECTIONS</p>
                     <div class="col-md-12 d-flex align-items-center justify-content-center">
                         <a href="https://www.facebook.com/profile.php?id=100085082030532" target="_blank">
@@ -264,6 +269,7 @@
                         </a>
                     </div>
                 </div>
+               
             </div>
             <hr class="mt-4 mb-3">
             <div class="row">

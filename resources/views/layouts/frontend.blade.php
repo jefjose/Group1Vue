@@ -245,7 +245,7 @@
                 </div>
 
                 <div class="col-md-6 text-center my-3">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid mt-3 mb-3"
+                    <img src="{{ asset('storage/images/logo.png') }}" alt="Logo" class="img-fluid mt-3 mb-3"
                         style="width: 100px; height: 100px; margin-bottom: 10px; margin-top: 10px;">
                     <p class="mt-3">PEACHY'S COLLECTIONS</p>
                     <div class="col-md-12 d-flex align-items-center justify-content-center">

@@ -16,6 +16,20 @@
             </div>
         </div>
     </div>
+
+    <div class="pt-5">
+    <div class="container">
+        <div class="row"></div>
+        @auth
+            @if (auth()->user()->is_admin == 0)
+                <div class="col-md-12 text-right" style="margin-top: 20px;">
+                    <cart-button />
+                </div>
+
+            @endif
+        @endauth
+    </div>
+</div>
     <div class="pt-5">
         <div class="container">
             <div class="row"></div>

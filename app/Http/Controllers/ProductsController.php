@@ -12,10 +12,12 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(9);
+        // Fetch 9 random products from the database
+        $products = Product::inRandomOrder()->paginate(9);
 
         return view('product', compact('products'));
     }
+
 
     /**
      * Show the form for creating a new resource.

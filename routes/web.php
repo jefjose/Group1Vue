@@ -9,6 +9,9 @@ Route::get('/', function () {
     return view('home'); // Load home.blade.php as the starting page
 })->name('home');
 
+Route::get('/about', function () {
+    return view('about'); 
+})->name('about');
 Auth::routes();
 
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

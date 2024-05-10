@@ -179,6 +179,9 @@
                                             class="text-uppercase">PRODUCTS</b></a></li>
                                 <li class="nav-item"><a href="{{ url('/myorders') }}" class="nav-link"><b
                                             class="text-uppercase">MY ORDERS</b></a></li>
+                                <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">
+                                        <b class="text-uppercase">ABOUT</b>
+                                    </a></li>
                             @endif
                         @else
                             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link">
@@ -186,6 +189,9 @@
                                 </a></li>
                             <li class="nav-item"><a href="{{ route('product') }}" class="nav-link">
                                     <b class="text-uppercase">PRODUCTS</b>
+                                </a></li>
+                            <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">
+                                    <b class="text-uppercase">ABOUT</b>
                                 </a></li>
                         @endauth
                     </ul>
@@ -220,7 +226,7 @@
                     @endguest
                 </div>
             </div>
-        </nav>        
+        </nav>
     </header>
 
     <main>

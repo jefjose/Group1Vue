@@ -89,15 +89,16 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($orders as $order)
-                                                @if ($order->id !== null)
-                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('m/d/Y') }}</td>
-                                                    <td>{{ $order->customer_first_name }}</td>
-                                                    <td>{{ $order->customer_last_name }}</td>
-                                                    <td>{{ $order->customer_contact }}</td>
-                                                    <td>{{ $order->customer_address }}</td>
-                                                    <td>{{ $order->total_amount }}</td>
-                                                    <td>{{ $order->id }}</td>
-                                                    <td>
+                                                    <tr>
+                                                        
+                                                        <td>{{ \Carbon\Carbon::parse($order->created_at)->format('m/d/Y') }}</td>
+                                                        <td>{{ $order->customer_first_name }}</td>
+                                                        <td>{{ $order->customer_last_name }}</td>
+                                                        <td>{{ $order->customer_contact }}</td>
+                                                        <td>{{ $order->customer_address }}</td>
+                                                        <td>{{ $order->total_amount}}</td>
+                                                        <td>{{ $order->id }}</td>
+                                                        <td>
                                                             @if ($order->status === 'Pending')
                                                                 <i class="fas fa-exclamation-circle text-warning"></i> 
                                                             @elseif ($order->status === 'Processing')
@@ -108,40 +109,37 @@
                                                                 <i class="fas fa-times-circle text-danger"></i> 
                                                             @endif
                                                             {{ $order->status }}
-                                                        </td>                      
+                                                        </td>
                                                         <td class="">
                                                             <div class="btn-group">
-                                                            <form method="get"
-                                                                    action="{{ route('order.show.user', ['orderId' => $order->id]) }}">
+                                                                <form method="get" action="{{ route('order.show.user', ['orderId' => $order->id]) }}">
                                                                     @csrf
-                                                                    <button type="submit"
-                                                                        class="btn btn-success ml-2"><b>View</b></button>
+                                                                    <button type="submit" class="btn btn-success ml-2"><b>View</b></button>
                                                                 </form>
                                                                 @if ($order->status == "Pending")
-                                                                <form method="post"
-                                                                    action="{{ route('order.delete.admin', ['orderId' => $order->id]) }}" onsubmit="return confirm('Are you sure you want to delete this order?')"
-                                                                    onsubmit="return confirm('Are you sure you want to delete this order?')">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        class="btn btn-danger ml-2"><b>Cancel</b></button>
-                                                                </form>
+                                                                    <form method="post" action="{{ route('order.delete.admin', ['orderId' => $order->id]) }}" onsubmit="return confirm('Are you sure you want to delete this order?')">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit" class="btn btn-danger ml-2"><b>Cancel</b></button>
+                                                                    </form>
                                                                 @endif
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                @endif
                                             @endforeach
-                                            @if ($orders->where('user_id', '!=', null)->where('status', '!=', 'claimed')->isEmpty())
+                                            @if ($orders->where('user_id', auth()->id())->isEmpty())
                                                 <tr>
-                                                    <td colspan="13" class="text-center">No Current
-                                                        Orders</td>
+                                                    <td colspan="9" class="text-center">No Current Orders</td>
                                                 </tr>
                                             @endif
                                         </tbody>
                                     </table>
                                 </div>
-</div></div>
-
-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
